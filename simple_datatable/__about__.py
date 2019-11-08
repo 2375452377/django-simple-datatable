@@ -4,7 +4,7 @@ __all__ = [
     '__email__', '__license__', '__copyright__',
 ]
 
-__title__ = 'django-easy-datatable'
+__title__ = 'django-simple-datatable'
 __summary__ = 'Easy datatable'
 __uri__ = ''
 

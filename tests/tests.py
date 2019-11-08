@@ -5,8 +5,8 @@ from django import forms
 from django.core.paginator import PageNotAnInteger, EmptyPage
 from django.test import TestCase, RequestFactory
 
-from easy_datatable.forms import DataTableForm
-from easy_datatable.views import DataTableFormView
+from simple_datatable.forms import DataTableForm
+from simple_datatable.views import DataTableFormView
 
 
 class DataTableFormViewTestCase(TestCase):

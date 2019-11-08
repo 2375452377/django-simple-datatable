@@ -1,5 +1,5 @@
 [run]
-source = easy_datatable
+source = simple_datatable
 
 [report]
 # Regexes for lines to exclude from consideration

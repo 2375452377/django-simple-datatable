@@ -4,7 +4,7 @@ export PYTHONPATH=.
 .PHONY: test
 
 test:
-	flake8 easy_datatable --ignore=E501
+	flake8 simple_datatable --ignore=E501
 	coverage run `which django-admin.py` test tests
 	coverage report
 

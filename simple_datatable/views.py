@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.generic import FormView
 
-from easy_datatable.forms import DataTableForm
+from simple_datatable.forms import DataTableForm
 
 
 class DataTableFormView(FormView):

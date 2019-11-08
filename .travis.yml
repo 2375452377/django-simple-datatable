@@ -4,5 +4,8 @@ language: python
 python: "2.7"
 before_install: pip install coveralls
 install: travis_retry pip install -r tests/requirements.txt
-script: tox
+script: make test
+env:
+  - DJANGO=1.10.*
+  - DJANGO=1.11.*
 after_success: coveralls

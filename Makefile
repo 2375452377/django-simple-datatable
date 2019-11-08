@@ -7,3 +7,11 @@ test:
 	flake8 easy_datatable --ignore=E501
 	coverage run `which django-admin.py` test tests
 	coverage report
+
+pack: clean
+	python setup.py sdist
+
+clean:
+	rm -vrf ./build ./dist ./*.egg-info
+	find . -name '*.pyc' -delete
+	find . -name '*.tgz' -delete

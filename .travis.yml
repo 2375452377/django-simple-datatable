@@ -1,0 +1,8 @@
+language: python
+python: "2.7.6"
+
+install:
+  - travis_retry pip install tox tox-travis -i https://pypi.douban.com/simple --trusted-host pypi.douban.com
+
+script:
+  - tox

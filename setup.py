@@ -26,7 +26,7 @@ setup(
     scripts=[],
     zip_safe=False,
     install_requires=[
-        'django>=1.10.*',
+        'django>=1.10.*<2',
     ],
     classifiers=[
         'Framework :: Django',

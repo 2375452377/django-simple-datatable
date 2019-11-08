@@ -1,4 +1,4 @@
-Django=={DJANGO}
+Django==${DJANGO}
 funcsigs==1.0.2
 mock==3.0.5
 six==1.13.0

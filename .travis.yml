@@ -9,5 +9,5 @@ install:
 script: make test
 env:
   - DJANGO=1.10.*
-  - DJANGO=1.11.*
+  - DJANGO=1.11.23
 after_success: coveralls

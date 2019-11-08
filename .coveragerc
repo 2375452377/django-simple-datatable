@@ -1,5 +1,5 @@
 [run]
-source = tests
+source = easy_datatable
 
 [report]
 # Regexes for lines to exclude from consideration

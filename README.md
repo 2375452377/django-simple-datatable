@@ -13,7 +13,7 @@ datatable Django 后台处理的简易实现
         mapping = {'0': 'id', '1': 'username'}
 
         def get_queryset(self):
-            return User.objects.values('id', 'username')
+            return User.objects.values('id', 'username').order_by(self.get_order())
     ```
 * 继承 `easy_datatable.views.DataTableFormView` 类，重写 `form_class`，`form_class` 必须为 `easy_datatable.forms.DataTableForm` 的子类
 

@@ -5,7 +5,7 @@ __all__ = [
 ]
 
 __title__ = 'django-simple-datatable'
-__summary__ = 'Easy datatable'
+__summary__ = 'Simple datatable'
 __uri__ = ''
 
 __version__ = '0.0.1'

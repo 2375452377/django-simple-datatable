@@ -3,6 +3,6 @@ dist: xenial
 language: python
 python: "2.7"
 
-install: travis_retry pip install -r requirements-test.txt -i https://pypi.douban.com/simple --trusted-host pypi.douban.com
+install: travis_retry pip install -r requirements-test.txt
 
 script: tox

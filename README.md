@@ -18,7 +18,7 @@ datatable Django 后台处理的简易实现
 * 继承 `easy_datatable.views.DataTableFormView` 类，重写 `form_class`，`form_class` 必须为 `easy_datatable.forms.DataTableForm` 的子类
 
     ```python
-    class UserManageView(DataTableFormView):
+    class UserDataTableFormView(DataTableFormView):
         form_class = UserDataTableForm
         template_name = 'your_app/your_template.html'
     ```

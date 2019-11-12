@@ -8,7 +8,7 @@ __title__ = 'django-simple-datatable'
 __summary__ = 'Simple datatable'
 __uri__ = ''
 
-__version__ = '0.0.1'
+__version__ = '0.1.1'
 
 __author__ = 'Terrence Luo'
 __email__ = 'Terrence.luo@coassets.com.cn'

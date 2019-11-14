@@ -6,7 +6,7 @@ __all__ = [
 
 __title__ = 'django-simple-datatable'
 __summary__ = 'Simple datatable'
-__uri__ = ''
+__uri__ = 'https://github.com/2375452377/django-simple-datatable.git'
 
 __version__ = '0.1.1'
 

@@ -1,5 +1,5 @@
 import mock
-from django.core.paginator import PageNotAnInteger, EmptyPage
+from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 from django.test import TestCase
 
 from simple_datatable import DataTable
@@ -69,21 +69,22 @@ class DataTableTestCase(TestCase):
         self.assertEqual(1, self.dt.page)
 
     def test_paging(self):
-        p, count = self.dt.paging([])
-        self.assertEqual(0, count)
-        self.assertIsNotNone(p)
+        result, paginator = self.dt.paging([])
+        self.assertIsInstance(paginator, Paginator)
+        self.assertEqual(0, paginator.count)
+        self.assertIsNotNone(result)
 
         with mock.patch('django.core.paginator.Paginator.page') as mocked:
             mocked.side_effect = [PageNotAnInteger, ['fake return']]
-            p, count = self.dt.paging([])
-            self.assertEqual(0, count)
-            self.assertEqual(['fake return'], p)
+            result, paginator = self.dt.paging([])
+            self.assertEqual(0, paginator.count)
+            self.assertEqual(['fake return'], result)
 
         with mock.patch('django.core.paginator.Paginator.page') as mocked:
             mocked.side_effect = [EmptyPage, ['fake return']]
-            p, count = self.dt.paging([])
-            self.assertEqual(0, count)
-            self.assertEqual(['fake return'], p)
+            result, paginator = self.dt.paging([])
+            self.assertEqual(0, paginator.count)
+            self.assertEqual(['fake return'], result)
 
     if """ get_order_by """:
         def test_get_order_by(self):

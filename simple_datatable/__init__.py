@@ -1,11 +1,9 @@
 __all__ = ('DataTable', )
 
+import operator
 import re
 
-import operator
-
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models import QuerySet
 from django.utils.functional import cached_property
 
 
@@ -96,53 +94,67 @@ class DataTable(object):
         for column, value in data.items():
             result = self.pattern.match(column)
             if result:
-                # search[value]             ==> search , None, value , None
-                # order[0][column]          ==> order  , 0   , column, None
-                # columns[0][search][regex] ==> columns, 0   , search, regex
+                """
+                search[value]             ==> search , None, value , None
+                order[0][column]          ==> order  , 0   , column, None
+                columns[0][search][regex] ==> columns, 0   , search, regex
+                """
                 column_name, column_id, key, option_key = result.groups()
 
-                # parsed = {
-                #     'column_name': {}
-                # }
+                """
+                parsed = {
+                    'column_name': {}
+                }
+                """
                 column_name_dict = parsed.setdefault(column_name, {})
                 if column_id:
-                    # parsed = {
-                    #     'column_name': {
-                    #         'column_id': {}
-                    #     }
-                    # }
+                    """
+                    parsed = {
+                        'column_name': {
+                            'column_id': {}
+                        }
+                    }
+                    """
                     column_id_dict = column_name_dict.setdefault(column_id, {})
                     if option_key:
-                        # parsed = {
-                        #     'column_name': {
-                        #         'column_id': {
-                        #             'key': {
-                        #                 'option_key': value
-                        #             }
-                        #         }
-                        #     }
-                        # }
+                        """
+                        parsed = {
+                            'column_name': {
+                                'column_id': {
+                                    'key': {
+                                        'option_key': value
+                                    }
+                                }
+                            }
+                        }
+                        """
                         column_id_dict.setdefault(key, {}).update({option_key: value})
                     else:
-                        # parsed = {
-                        #     'column_name': {
-                        #         'column_id': {
-                        #             'key': value
-                        #         }
-                        #     }
-                        # }
+                        """
+                        parsed = {
+                            'column_name': {
+                                'column_id': {
+                                    'key': value
+                                }
+                            }
+                        }
+                        """
                         column_id_dict[key] = value
                 else:
-                    # parsed = {
-                    #     'column_name': {
-                    #         'key': value
-                    #     }
-                    # }
+                    """
+                    parsed = {
+                        'column_name': {
+                            'key': value
+                        }
+                    }
+                    """
                     column_name_dict[key] = value
             else:
-                # parsed = {
-                #     'column': value
-                # }
+                """
+                parsed = {
+                    'column': value
+                }
+                """
                 parsed[column] = value
         return parsed
 
@@ -181,15 +193,15 @@ class DataTable(object):
             list_to_sort.sort(**kwargs)
             kwargs.clear()
 
-    def paging(self, queryset):
-        paginator = Paginator(queryset, self.length)
+    def paging(self, object_list, *args, **kwargs):
+        paginator = Paginator(object_list=object_list, per_page=self.length, *args, **kwargs)
         try:
             p = paginator.page(self.page)
         except PageNotAnInteger:
             p = paginator.page(1)
         except EmptyPage:
             p = paginator.page(paginator.num_pages)
-        return self.handle_data(p), queryset.count() if isinstance(queryset, QuerySet) else len(queryset)
+        return self.handle_data(p), paginator
 
     def handle_data(self, data):
         """ Customized by overriding handle_data """
